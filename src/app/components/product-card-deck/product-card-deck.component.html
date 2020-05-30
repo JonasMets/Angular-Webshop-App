@@ -1,0 +1,17 @@
+<!-- 
+  product-card-deck.component
+ -->
+<div class="container">
+
+  <div class="row row-cols-1 row-cols-md-3">
+
+    <!-- för varje produkt visar vi app-product-card och skickar med en input -->
+    <!-- <div *ngIf="expression" >
+    </div> -->
+    <div *ngFor="let product of productcatalog | async">
+      <app-product-card [product]="product" ></app-product-card>
+    </div>
+
+  </div>
+
+</div>

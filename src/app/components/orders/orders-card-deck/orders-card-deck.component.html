@@ -1,0 +1,26 @@
+<div class="container">
+
+  <div class="row row-cols-1 row-cols-md-1">
+
+
+    <ng-container *ngIf="customerOrders.count <= 0; else elseTemplate" >
+      <h5 class="container">Inga ordrar finns att visa</h5>
+    </ng-container>
+    <ng-template #elseTemplate>
+      <!-- för varje order visar vi app-orders-card och skickar med en input -->
+      <div *ngFor="let order of customerOrders.orders">
+        <app-orders-card [order]="order"></app-orders-card>
+      </div>
+    </ng-template>
+
+
+    <!-- för varje order visar vi app-orders-card och skickar med en input -->
+    <!-- <div *ngFor="let order of customerOrders.orders">
+      <app-orders-card [order]="order"></app-orders-card>
+    </div> -->
+
+
+
+  </div>
+
+</div>

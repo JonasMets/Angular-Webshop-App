@@ -1,0 +1,26 @@
+<div>
+  <!--         col -->
+  <div class=" mb-4">
+    <!-- Card -->
+    <div class="card p-2 p-2">
+      <span>Order Id: {{ order._id }} </span>
+      <span>Status: {{ order.orderStatus }} </span>
+      <span>Order värde: {{ order.orderTotalAmount}}</span>
+
+      <span>Orderinnehåll: </span>
+      <!-- lista upp alla produkter som finns i ordern -->
+      <!--   row row-cols-1 row-cols-md-3 -->
+      <!-- container mt-1 mb-1 col col-8 -->
+      <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 mt-1 mb-1">
+          <div *ngFor="let item of order.orderItems" class="">
+            <!-- {{ item.product.name }} -->
+            <!--  -->
+            <app-orders-card-items [item]="item"></app-orders-card-items>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

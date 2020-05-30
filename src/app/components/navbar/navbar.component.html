@@ -1,0 +1,90 @@
+<div>
+  <!--Navbar     navbar-color default-color-->
+  <nav class="mb-1 navbar navbar-expand-lg navbar-dark navbar-color">
+
+    <!-- container -->
+    <div class="container">
+
+      <!-- routerLinkActive="active-link"  [routerLinkActiveOptions]="{exact:true}"-->
+      <div class="navbar-brand ">
+        <a class="nav-link navbar-brand-color" routerLink="/" >
+          <i class="fab fa-angellist"></i>SHOPWARE
+        </a>
+      </div>
+    
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+        aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+        <ul class="navbar-nav mr-auto">
+
+          <li class="nav-item ">
+            <a class="nav-link" routerLink="/" routerLinkActive="active-link selected" [routerLinkActiveOptions]="{exact:
+            true}">Hem</a>
+          </li>
+
+          <li class="nav-item ">
+            <a class="nav-link" routerLink="products" routerLinkActive="active-link selected" [routerLinkActiveOptions]="{exact:
+            true}">Produkter</a>
+          </li>
+
+
+        </ul>
+
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+          <!-- shopping cart -->
+          <li class="nav-item dropdown">
+            <!-- Basic dropdown -->
+            <a class="nav-link mr-4" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <!-- {{ shoppingCartItemCount }} -->
+              {{shoppingCartItemCount | async }}
+              <i class="fas fa-shopping-cart"></i>
+            </a>
+
+            <!-- dropdown-menu drop-down-menu-right z-depth-2 shopping-cart -->
+            <div class="dropdown-menu dropdown-menu-right z-depth-2 shopping-cart">
+              <!-- <ShoppingCart /> -->
+              <!-- ShoppingCart -->
+              <app-cart></app-cart>
+            </div>
+            <!-- Basic dropdown -->
+          </li>
+
+          <!-- user settings -->
+          <ng-container *ngIf="(_isAuthenticated | async); else elseTemplate" class="nav-item" >
+            <div class="nav-link">
+              {{ _userName | async }}
+            </div>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <a class="nav-link" routerLink="login">Logga In</a>
+          </ng-template>
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              <i class="fas fa-user"></i>
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-right z-depth-2">
+              <!-- <UserSettings /> -->
+              <app-user-menu></app-user-menu>
+              
+            </div>
+          </li>
+          <!-- user settings -->
+
+          
+        </ul>
+      </div>
+
+    </div>
+    <!-- container -->
+
+  </nav>
+  <!--/.Navbar -->
+
+</div>

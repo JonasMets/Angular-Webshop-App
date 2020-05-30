@@ -1,0 +1,17 @@
+.selected{
+  color: aquamarine !important;
+  background-color: #5293fb;
+  opacity: 0.7;
+}
+
+.navbar-color{
+  background-color: #5a99ff;
+}
+
+.icon-color{
+  color: red;
+}
+
+.navbar-brand-color{
+  color: whitesmoke !important;
+}

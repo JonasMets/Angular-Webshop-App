@@ -1,0 +1,50 @@
+<!-- <p>cart-products works!</p> -->
+
+<div>
+  <div class="cart-item">
+    <div class="p2-d-flex justify-content-between align-items-center">
+      <div class="d-flex align-items-center">
+        <!--                            -->
+        <img class="image-width" [src]="cartItem.product.image" alt="produkt bild" />
+        <div>
+          <div>
+            <!-- Produkt namn:  -->
+            <strong> {{cartItem.product.name}} </strong>
+          </div>
+          <div>
+            <!-- {{ shoppingCartItemCount }}    {{shoppingCart.quantity}} -->
+            <small> {{cartItem.quantity}} x  {{cartItem.product.price}}  SEK</small>
+          </div>
+        </div>
+
+        <div class="ml-3 d-flex align-items-center">
+          <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+
+            <!-- när man trycker på +/- ska antal för produkt öka/minska -->
+            <!-- kallar på decreaseQuantity i store actions -->
+            <button type="button" class="btn btn-grey btn-sm px-3"
+            (click)="removeFromCart()"
+            >-</button>
+            <!-- kallar på increaseQuantity i store actions -->
+            <button type="button" class="btn btn-grey btn-sm px-3"
+            (click)="addToCart()"
+             >+</button>
+
+          </div>
+
+          <div>
+            <!-- deleteProductFromCart kallar på funktion i store som tar bort den valda produkten -->
+            <!-- skickar med cartItem.product.id -->
+            <button
+              class="btn btn-sm btn-danger"
+              (click)="removeAll()"
+            >
+              <i class="far fa-trash-alt"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="dropdown-divider"></div>
+</div>

@@ -1,0 +1,130 @@
+<div class="container">
+  <!-- <h3>Checkout</h3> -->
+
+  <div>
+    <h4 class="mt-2 mb-2">Skapa och skicka order</h4>
+
+    <div class="container mt-2">
+      <div class="container" *ngFor="let cartItem of (shoppingCart | async)">
+        <app-cart-products [cartItem]="cartItem"></app-cart-products>
+      </div>
+    </div>
+
+
+
+    <ng-container *ngIf="_total <= 0; else elseTemplate">
+      <strong>Inga produkter i kundvagn</strong>
+      <p>välj produkter för att slutföra order</p>
+    </ng-container>
+    <ng-template #elseTemplate>
+      <div class="container">
+        <div class="total-price">
+          Totalt:
+          
+          <span class="ml-1"> {{ totalCartAmount | async }} sek</span>
+        </div>
+        <small class="text-muted">inkl.moms</small>
+      </div>
+    </ng-template>
+    
+
+    <!-- adress mm -->
+    <div>
+      <div class="container mt-2 mb-2">
+
+        <form [formGroup]="checkOutForm" (ngSubmit)="submitOrder()">
+
+          <div class="card p-4">
+
+            <!-- name  -->
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <input
+                  [class.is-invalid]="checkOutForm.controls.firstName.invalid && (checkOutForm.controls.firstName.touched || checkOutForm.controls.firstName.dirty)"
+                  type="text" class="form-control" placeholder="Förnamn" id="firstName" formControlName="firstName"
+                  autocomplete="off">
+              </div>
+              <div class="form-group col-md-6">
+                <input
+                  [class.is-invalid]="checkOutForm.controls.lastName.invalid && (checkOutForm.controls.lastName.touched || checkOutForm.controls.lastName.dirty)"
+                  type="text" class="form-control" placeholder="Efternamn" id="lastName" formControlName="lastName"
+                  autocomplete="off">
+              </div>
+            </div>
+
+            <!-- email -->
+            <div class="form-group">
+              <input
+                [class.is-invalid]="checkOutForm.controls.email.invalid && (checkOutForm.controls.email.touched || checkOutForm.controls.email.dirty)"
+                type="text" class="form-control" placeholder="Email" id="email" formControlName="email"
+                autocomplete="off">
+            </div>
+
+            <!-- address -->
+            <div class="form-group mt-4">
+              <input type="text" class="form-control" placeholder="Adress" id="addressLine"
+                formControlName="addressLine" autocomplete="off">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <input type="number" class="form-control" placeholder="postnummer" id="zipCode"
+                  formControlName="zipCode" autocomplete="off" maxlength="5"
+                  [class.is-invalid]="checkOutForm.controls.zipCode.invalid && (checkOutForm.controls.zipCode.touched || checkOutForm.controls.zipCode.dirty)">
+                <small class="text-muted ml-3"> 5 siffror </small>
+              </div>
+              
+              <!-- country -->
+              <div class="form-group col-md-4">
+                <select class="custom-select" formControlName="country">
+                  <option value="" disabled>Välj land</option>
+
+                  <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+
+                </select>
+              </div>
+              <!-- city -->
+              <div class="form-group col-md-4">
+                <select class="custom-select" formControlName="city">
+                  <option value="" disabled>Välj stad</option>
+
+                  <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+
+                </select>
+              </div>
+
+            </div>
+
+            <!-- accept terms -->
+            <div class="form-group form-check mt-3">
+              <input class="form-check-input cursor" type="checkbox" name="acceptTerms" id="acceptTerms"
+                formControlName="acceptTerms">
+              <label class="form-check-label cursor" for="acceptTerms">Jag godkänner villkoren</label>
+              <div *ngIf="checkOutForm.controls.acceptTerms.invalid && checkOutForm.controls.acceptTerms.touched">
+                <small class="text-danger" *ngIf="checkOutForm.controls.acceptTerms.errors.required">Must accept</small>
+              </div>
+            </div>
+
+            <!-- Complete registration -->
+            <div class="form-group mt-3">
+              <!--                                         ml-auto  -->
+              <button type="submit" class="btn btn-default btn-block" [disabled]="!checkOutForm.valid"
+                [class.btn-light]="!checkOutForm.valid">Godkänn och skicka</button>
+            </div>
+
+            <div class="">
+              <!--  reset form                    ml-auto  -->
+              <button type="reset" class="btn btn-link btn-block text-muted">Ångra</button>
+            </div>
+
+          </div>
+
+        </form>
+
+        <!--Section: Content-->
+      </div>
+    </div>
+  </div>
+
+
+</div>

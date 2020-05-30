@@ -1,0 +1,14 @@
+<div>
+
+  <ng-container *ngIf="!(_isAuthenticated | async); else elseTemplate">
+    <a routerLink="login" class="dropdown-item">Logga in</a>
+    <a routerLink="register" class="dropdown-item">Skapa konto</a>
+  </ng-container>
+  <ng-template #elseTemplate>
+    <a routerLink="/customerprofile" class="dropdown-item">Ditt konto</a>
+    <a routerLink="/customerorders" class="dropdown-item">Dina ordrar</a>
+    <button class="dropdown-item" (click)="logOutUser()" >Logga ut</button>
+  </ng-template>
+  
+
+</div>

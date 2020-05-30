@@ -1,0 +1,53 @@
+<!--  -->
+
+<div class="p-2">
+  <h5>Dina Produkter</h5>
+  <hr>
+
+  <!-- <div v-if="shoppingCart.length <1 "> -->
+  <div *ngIf="(totalCartAmount | async) <= 0">
+    <p>Din varukorg är tom</p>
+  </div>
+
+  <div *ngFor="let cartItem of (shoppingCart | async).shoppingcart">
+    <app-cart-products [cartItem]="cartItem"></app-cart-products>
+  </div>
+
+  <div class="p-2 d-flex justify-content-between align-items-center">
+    <div>
+      <div class="total-price">
+        Totalt:
+        <span class="ml-1"> {{ totalCartAmount | async }} sek</span>
+      </div>
+      <small class="text-muted">inkl.moms</small>
+    </div>
+
+    <div>
+      
+      <ng-container *ngIf="(totalCartAmount | async) <= 0; else elseTemplate">
+        <!-- <p>Varukorg tom</p> -->
+      </ng-container>
+      <ng-template #elseTemplate>
+        <!-- <button class="btn btn-default">Gå till kassan</button> -->
+
+        <ng-container *ngIf="!(_isAuthenticated | async); else elseTemplate">
+          <!-- <p class="btn muted">Logga in för att beställa</p> -->
+          <a class="btn muted" routerLink="login">
+            Logga in för att beställa
+          </a>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <a class="mask rgba-white-slight btn btn-default btn-md" routerLink="/checkout">
+            Gå till kassan
+          </a>
+        </ng-template>
+        
+
+        <!-- <a class="mask rgba-white-slight btn btn-default btn-md" routerLink="/checkout">
+          Gå till kassan
+        </a> -->
+      </ng-template>
+      
+    </div>
+  </div>
+</div>

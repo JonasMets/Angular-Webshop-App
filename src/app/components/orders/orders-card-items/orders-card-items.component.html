@@ -1,0 +1,13 @@
+
+<div class="card m-2">
+  {{ item.product.name }}
+  <div class="view overlay">
+    <img class="card-img-top image-width" [src]="item.product.image" alt="Card image cap" />
+  </div>
+
+  <div class="card-body">
+    <p class="card-text">Beskrivning: {{item.product.description}} </p>
+    <strong>Pris:</strong> {{ item.product.price }} Antal: {{ item.quantity}}
+  </div>
+
+</div>
